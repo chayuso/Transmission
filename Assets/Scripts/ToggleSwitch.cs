@@ -10,8 +10,9 @@ public class ToggleSwitch : MonoBehaviour {
     Vector3 initButtonPos;
     bool isStepped = false;
     public bool manualEnable = false;
-	// Use this for initialization
-	void Start () {
+    public List<GameObject> ObjectsOnTop;
+    // Use this for initialization
+    void Start () {
         initButtonPos = Button.transform.localPosition;
 	}
 	
@@ -49,14 +50,19 @@ public class ToggleSwitch : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "ThirdPersonController")
+        if (col.name == "ThirdPersonController" || col.name.Split(' ')[0].Trim() == "Transmitter" || col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
         {
             isStepped = true;
+            ObjectsOnTop.Add(col.gameObject);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.name == "ThirdPersonController")
+        if (col.name == "ThirdPersonController"||col.name.Split(' ')[0].Trim()=="Transmitter"|| col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
+        {
+            ObjectsOnTop.Remove(col.gameObject);
+        }
+        if (ObjectsOnTop.Count==0)
         {
             isStepped = false;
         }
