@@ -30,12 +30,12 @@ public class House : MonoBehaviour {
 		Vector3 target = transform.position;
 		target.y = source.y;
 
-		if (source.y > transform.position + col.bounds.extents.y){
-			source.y = transform.position + col.bounds.extents.y;
-			target.y = transform.position + col.bounds.extents.y/2;
-		} else if (source.y < transform.position - col.bounds.extents.y){
-			source.y = transform.position - col.bounds.extents.y;
-			target.y = transform.position - col.bounds.extents.y/2;
+		if (source.y > transform.position.y + col.bounds.extents.y){
+			source.y = transform.position.y + col.bounds.extents.y;
+			target.y = transform.position.y + col.bounds.extents.y/2;
+		} else if (source.y < transform.position.y - col.bounds.extents.y){
+			source.y = transform.position.y - col.bounds.extents.y;
+			target.y = transform.position.y - col.bounds.extents.y/2;
 		}
 
 		RaycastHit[] hits = Physics.RaycastAll(source, target - source, range);

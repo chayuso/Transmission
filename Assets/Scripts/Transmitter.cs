@@ -85,7 +85,10 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	void Awake(){
 		SphereCollider col = GetComponent<SphereCollider>();
-		transmissionRadius = col.radius;
+
+		float greatestDimension = Mathf.Max(transform.localScale.x, transform.localScale.z);
+
+		transmissionRadius = col.radius * greatestDimension;
 		Destroy(col);
 
 		rend = GetComponent<MeshRenderer>();
@@ -182,8 +185,9 @@ public class Transmitter : MonoBehaviour {
 	House[] FindNearbyHouses(){
 		List<House> houses = new List<House>();
 		foreach(House h in GameObject.FindObjectsOfType<House>()){
-			
+			//if(h.IsInRangeOfSource(transmissionRadius, 
 		}
+		return houses.ToArray();
 	}
 
 	//------------------------------------------------------------
