@@ -30,7 +30,7 @@ public class AlignTile : MonoBehaviour {
                 tileX = findPosition(transform.position.x, 0, "x");
                 tileY = findPosition(transform.position.z, 0, "y");
                 tileZ = findPosition(transform.position.y, 0, "z");
-                transform.position = new Vector3(tileX + (.1f * (tileX - 1)), tileZ + (.1f * (tileZ - 1)), tileY + (.1f * (tileY - 1)));
+                transform.position = new Vector3(tileX , tileZ, tileY);
                 if (NonTile)
                 {
                     GetComponent<MeshRenderer>().enabled = false;
