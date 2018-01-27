@@ -68,6 +68,7 @@ public class Transmitter : MonoBehaviour {
 	[SerializeField] bool isStartTransmitter = false;
 	[SerializeField] Material debugOff;
 	[SerializeField] Material debugOn;
+	[SerializeField] Material debugBroken;
 
 	//------------------------------------------------------------
 	// local variables
@@ -124,6 +125,13 @@ public class Transmitter : MonoBehaviour {
 	}
 
 	//------------------------------------------------------------
+	// breaks the transmitter
+	//------------------------------------------------------------
+	public void Break(){
+		OnDisabled();
+	}
+
+	//------------------------------------------------------------
 	// on remove, also update the power chain
 	//------------------------------------------------------------
 	void OnDisabled(){
@@ -167,12 +175,23 @@ public class Transmitter : MonoBehaviour {
 		Debug.Log(neighbors.Count);
 		return neighbors.ToArray();
 	}
+		
+	//------------------------------------------------------------
+	// returns a list of all nearby houses
+	//------------------------------------------------------------
+	House[] FindNearbyHouses(){
+		List<House> houses = new List<House>();
+		foreach(House h in GameObject.FindObjectsOfType<House>()){
+			
+		}
+	}
 
 	//------------------------------------------------------------
 	// visual debug
 	//------------------------------------------------------------
 	void SetDebugAppearance(bool on){
 		rend.material = on ? debugOn : debugOff;
+		rend.material = broken ? debugBroken : rend.material;
 	}
 
 	//------------------------------------------------------------
