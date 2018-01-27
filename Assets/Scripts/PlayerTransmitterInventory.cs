@@ -8,8 +8,8 @@ public class PlayerTransmitterInventory : MonoBehaviour {
 	[SerializeField] GameObject transmitterPrefab;
 	[SerializeField] Transform transmitterDropPoint;
 	[SerializeField] Transform pickupCenter;
-	[SerializeField] int transmitterCount;
-	[SerializeField] float pickupRadius;
+	[SerializeField] int transmitterCount = 4;
+	[SerializeField] float pickupRadius = 1.5f;
 
 	float distance;
 	Transmitter nearest = null;

@@ -5,20 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class House : MonoBehaviour {
 
+	//------------------------------------------------------------
+	// checks whether the house is within a power radius
+	//------------------------------------------------------------
+	public static House[] LitHouses(){
+		List<House> litHouses = new List<House>();
+		foreach (House h in GameObject.FindObjectsOfType<House>()){
+			if (h.isPowered)
+				litHouses.Add(h);
+		}
+		return litHouses.ToArray();
+	}
+
+	public static void AssessHousingChange(House[] previousLitHouses){
+		
+	}
+		
+
 	Collider col;
+	bool isPowered = false;
 
 	void Awake(){
 		col = GetComponent<Collider>();
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	//------------------------------------------------------------
@@ -44,6 +52,22 @@ public class House : MonoBehaviour {
 				return true;
 		}
 		return false;
+	}
+
+	public void SetPower(bool on){
+		if (on ^ isPowered)
+		if (on)
+			OnPowerOn();
+		else
+			OnPowerOff();
+	}
+
+	void OnPowerOff(){
+		//play change to dark effect
+	}
+
+	void OnPowerOn(){
+		//play change to light effect
 	}
 
 }
