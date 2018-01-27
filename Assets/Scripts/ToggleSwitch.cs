@@ -19,17 +19,18 @@ public class ToggleSwitch : MonoBehaviour {
 	void Update () {
         if (manualEnable)
         {
-            Wall.SetActive(manualEnable);
+         
             if (manualEnable)
             {
                 Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
                 Button.GetComponent<Renderer>().material = ActiveMaterial;
 
             }
+            Wall.SetActive(manualEnable);
         }
         else
         {
-            Wall.SetActive(isStepped);
+    
             if (isStepped)
             {
                 Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
@@ -42,6 +43,7 @@ public class ToggleSwitch : MonoBehaviour {
                 Button.GetComponent<Renderer>().material = InactiveMaterial;
                 Wall.GetComponent<WallScript>().ReEnableEnemies();
             }
+            Wall.SetActive(isStepped);
         }
 
 	}
