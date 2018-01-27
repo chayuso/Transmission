@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
 public class Transmitter : MonoBehaviour {
 
 	//=========================================================================
@@ -73,23 +72,32 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	// local variables
 	//------------------------------------------------------------
-	SphereCollider col;
 	MeshRenderer rend;
+	float transmissionRadius;
 
 	bool updated = false;
 	bool powered = false;
 	bool broken = false;
 
 	//------------------------------------------------------------
+	// on awake
+	//------------------------------------------------------------
+	void Awake(){
+		SphereCollider col = GetComponent<SphereCollider>();
+		transmissionRadius = col.radius;
+		Destroy(col);
+
+		rend = GetComponent<MeshRenderer>();
+
+		AddTransmitter(this);
+		if (isStartTransmitter)
+			SetStartTransmitter(this);
+	}
+
+	//------------------------------------------------------------
 	// on start
 	//------------------------------------------------------------
 	void Start () {
-		col = GetComponent<SphereCollider>();
-		rend = GetComponent<MeshRenderer>();
-
-		if (isStartTransmitter)
-			SetStartTransmitter(this);
-
 		OnPlaced();
 	}
 
@@ -104,6 +112,7 @@ public class Transmitter : MonoBehaviour {
 	// on destroy
 	//------------------------------------------------------------
 	void OnDestroy(){
+		RemoveTransmitter(this);
 		OnDisabled();
 	}
 
@@ -127,7 +136,7 @@ public class Transmitter : MonoBehaviour {
 	// the events that occur when the power is changed
 	//------------------------------------------------------------
 	void OnPowerChanged(bool newPower){
-
+		SetDebugAppearance(newPower);
 	}
 
 	//------------------------------------------------------------
@@ -142,13 +151,13 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	Transmitter[] FindNeighbors(){
 		List<Transmitter> neighbors = new List<Transmitter>();
-		Collider[] nearby = Physics.OverlapSphere(transform.position, col.radius);
-		foreach (Collider c in nearby){
-			Transmitter t = c.gameObject.GetComponent<Transmitter>();
-			if (t == null)
-				continue;
-			neighbors.Add(t);
+
+		foreach (Transmitter c in transmitters){
+			if (Vector3.Distance(c.transform.position, transform.position) <= transmissionRadius)
+				neighbors.Add(c);
 		}
+	
+		Debug.Log(neighbors.Count);
 		return neighbors.ToArray();
 	}
 
@@ -157,6 +166,13 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	void SetDebugAppearance(bool on){
 		rend.material = on ? debugOn : debugOff;
+	}
+
+	//------------------------------------------------------------
+	// to allow things to check whether this is the special one
+	//------------------------------------------------------------
+	public bool IsStartTransmitter(){
+		return isStartTransmitter;
 	}
 
 }
