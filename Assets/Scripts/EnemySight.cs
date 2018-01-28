@@ -29,4 +29,18 @@ public class EnemySight : MonoBehaviour {
 		}
 		return null;
 	}
+
+	public HuntedTarget Scan(){
+		foreach(HuntedTarget t in GameObject.FindObjectsOfType<HuntedTarget>()){
+			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)
+				continue;
+			RaycastHit hit;
+			if (Physics.Raycast(t.transform.position, transform.position - t.transform.position, out hit, sightRange)){
+				if (hit.collider.gameObject == gameObject){
+					return t;
+				}
+			}
+		}
+		return null;
+	}
 }
