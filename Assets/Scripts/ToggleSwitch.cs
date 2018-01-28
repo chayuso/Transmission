@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToggleSwitch : MonoBehaviour {
-    private GameObject Button;
+    public GameObject Button;
     public Material InactiveMaterial;
     public Material ActiveMaterial;
     public GameObject Wall;
