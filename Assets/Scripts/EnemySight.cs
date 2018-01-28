@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySight : MonoBehaviour {
 
-	[SerializeField] float sightRange;
+	[SerializeField] float sightRange = 5;
 
 	// Use this for initialization
 	void Start () {
