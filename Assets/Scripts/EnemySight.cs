@@ -19,8 +19,10 @@ public class EnemySight : MonoBehaviour {
 	public HuntedTarget Scan(){
 		int highestPriority = -1;
 		HuntedTarget bestTarget = null;
+		//print("Scanning");
 
 		foreach(HuntedTarget t in GameObject.FindObjectsOfType<HuntedTarget>()){
+			//print(t.IsValidTarget());
 			if(!t.IsValidTarget())
 				continue;
 			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)

@@ -18,10 +18,7 @@ public class Transmitter : MonoBehaviour {
 
 	static void AddTransmitter(Transmitter t){transmitters.Add(t);}
 	static void RemoveTransmitter(Transmitter t){transmitters.Remove(t);}
-    public List<House> houses = new List<House>();
-    public GameObject TransistorOn;
-    public GameObject TransistorOff;
-    public GameObject TransistorBroken;
+
     //------------------------------------------------------------
     // begins the update cycle of the transmitters
     //------------------------------------------------------------
@@ -78,9 +75,14 @@ public class Transmitter : MonoBehaviour {
 	// editor variables
 	//------------------------------------------------------------
 	[SerializeField] bool isStartTransmitter = false;
+	[SerializeField] bool useMaterialsOnly = false;
 	[SerializeField] Material debugOff;
 	[SerializeField] Material debugOn;
 	[SerializeField] Material debugBroken;
+	public List<House> houses = new List<House>();
+	public GameObject TransistorOn;
+	public GameObject TransistorOff;
+	public GameObject TransistorBroken;
 
 	//------------------------------------------------------------
 	// local variables
@@ -154,7 +156,7 @@ public class Transmitter : MonoBehaviour {
 	}
     public bool IsBroken()
     {
-        return false;
+        return broken;
     }
 	//------------------------------------------------------------
 	// on remove, also update the power chain
@@ -221,25 +223,24 @@ public class Transmitter : MonoBehaviour {
 	// visual debug
 	//------------------------------------------------------------
 	void SetDebugAppearance(bool on){
-        if (broken)
-        {
-            TransistorBroken.SetActive(true);
-            TransistorOn.SetActive(false);
-            TransistorOff.SetActive(false);
-        }
-        else if (powered)
-        {
-            TransistorBroken.SetActive(false);
-            TransistorOn.SetActive(true);
-            TransistorOff.SetActive(false);
-        }
-        else {
-            TransistorBroken.SetActive(false);
-            TransistorOn.SetActive(false);
-            TransistorOff.SetActive(true);
-        }
-        //rend.material = on ? debugOn : debugOff;
-		//rend.material = broken ? debugBroken : rend.material;
+		if (!useMaterialsOnly){
+			if (broken){
+				TransistorBroken.SetActive(true);
+				TransistorOn.SetActive(false);
+				TransistorOff.SetActive(false);
+			} else if (powered){
+				TransistorBroken.SetActive(false);
+				TransistorOn.SetActive(true);
+				TransistorOff.SetActive(false);
+			} else{
+				TransistorBroken.SetActive(false);
+				TransistorOn.SetActive(false);
+				TransistorOff.SetActive(true);
+			}
+		} else {
+        	rend.material = on ? debugOn : debugOff;
+			rend.material = broken ? debugBroken : rend.material;
+		}
 	}
 
 	//------------------------------------------------------------
@@ -253,6 +254,7 @@ public class Transmitter : MonoBehaviour {
 	// responds to the hunted script as to whether this has already been broken
 	//------------------------------------------------------------
 	public void IsHuntable(HuntedTarget ht){
-		ht.SetValidTarget(!broken && !startTransmitter);
+		//print("Broken: " + broken + " / Start: " + isStartTransmitter);
+		ht.SetValidTarget(!broken && !isStartTransmitter);
 	}
 }

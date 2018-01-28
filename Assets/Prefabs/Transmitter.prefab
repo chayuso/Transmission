@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   houses: []
+  TransistorOn: {fileID: 0}
+  TransistorOff: {fileID: 0}
+  TransistorBroken: {fileID: 0}
   isStartTransmitter: 0
   debugOff: {fileID: 2100000, guid: 96df8216a7833f949b1bd5de21dfc3cd, type: 2}
   debugOn: {fileID: 2100000, guid: d99e966b020c3e246b48b7e0855f9cc6, type: 2}

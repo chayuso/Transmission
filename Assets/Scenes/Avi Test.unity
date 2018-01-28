@@ -481,11 +481,16 @@ Prefab:
     - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
         type: 2}
       propertyPath: isStartTransmitter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090065868784760, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
       propertyPath: m_Name
       value: Transmitter (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
+        type: 2}
+      propertyPath: useMaterialsOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
@@ -718,6 +723,11 @@ Prefab:
       propertyPath: isStartTransmitter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
+        type: 2}
+      propertyPath: useMaterialsOnly
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
   m_IsPrefabParent: 0
@@ -763,11 +773,16 @@ Prefab:
     - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
         type: 2}
       propertyPath: isStartTransmitter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090065868784760, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
       propertyPath: m_Name
       value: Transmitter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
+        type: 2}
+      propertyPath: useMaterialsOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
@@ -814,11 +829,16 @@ Prefab:
     - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
         type: 2}
       propertyPath: isStartTransmitter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090065868784760, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
       propertyPath: m_Name
       value: Transmitter (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
+        type: 2}
+      propertyPath: useMaterialsOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
@@ -865,11 +885,16 @@ Prefab:
     - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
         type: 2}
       propertyPath: isStartTransmitter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090065868784760, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
       propertyPath: m_Name
       value: Transmitter (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114951299276347482, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
+        type: 2}
+      propertyPath: useMaterialsOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
@@ -919,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2071793104
 Transform:
   m_ObjectHideFlags: 0
