@@ -8,12 +8,14 @@ public class House : MonoBehaviour {
     public GameObject HouseOff;
     public bool isOn = false;
     private GameState GS;
+    private AudioController AC;
     //------------------------------------------------------------
     // checks whether the house is within a power radius
     //------------------------------------------------------------
     void Start()
     {
        GS = GameObject.Find("GameState").GetComponent<GameState>();
+       AC = GameObject.Find("AudioController").GetComponent<AudioController>();
     }
 	public static House[] LitHouses(){
 		List<House> litHouses = new List<House>();
