@@ -156,7 +156,7 @@ MonoBehaviour:
   isStartTransmitter: 0
   debugOff: {fileID: 2100000, guid: 96df8216a7833f949b1bd5de21dfc3cd, type: 2}
   debugOn: {fileID: 2100000, guid: d99e966b020c3e246b48b7e0855f9cc6, type: 2}
-  debugBroken: {fileID: 0}
+  debugBroken: {fileID: 2100000, guid: ab041b2aa6a173d4caab18e6e247c33f, type: 2}
 --- !u!135 &135551875830186906
 SphereCollider:
   m_ObjectHideFlags: 1

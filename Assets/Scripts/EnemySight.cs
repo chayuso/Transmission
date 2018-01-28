@@ -21,6 +21,8 @@ public class EnemySight : MonoBehaviour {
 		HuntedTarget bestTarget = null;
 
 		foreach(HuntedTarget t in GameObject.FindObjectsOfType<HuntedTarget>()){
+			if(!t.IsValidTarget())
+				continue;
 			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)
 				continue;
 			RaycastHit hit;
