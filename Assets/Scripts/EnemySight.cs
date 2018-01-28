@@ -16,7 +16,7 @@ public class EnemySight : MonoBehaviour {
 		
 	}
 
-	Transmitter Sweep(){
+	public Transmitter Sweep(){
 		foreach(Transmitter t in GameObject.FindObjectsOfType<Transmitter>()){
 			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)
 				continue;
