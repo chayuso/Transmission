@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemySight))]
-public class AdaptiveAIController : MonoBehaviour {
+public partial class AdaptiveAIController : MonoBehaviour {
 	[SerializeField] Transform footPoint;
 	[SerializeField] Transform[] checkpoints;
 	[SerializeField] int startCheckpoint = 0;
