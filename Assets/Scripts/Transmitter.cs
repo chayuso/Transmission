@@ -23,6 +23,8 @@ public class Transmitter : MonoBehaviour {
 	// begins the update cycle of the transmitters
 	//------------------------------------------------------------
 	static void Reassess(){
+		House[] litHousesBefore = House.LitHouses();	//log the houses that are lit beforehand
+
 		foreach (Transmitter t in transmitters){
 			t.updated = false;
 			t.SetPower(false);
@@ -32,6 +34,8 @@ public class Transmitter : MonoBehaviour {
 		AssessPower(startTransmitter);
 
 		foreach (Transmitter t in transmitters){t.updated = true;}
+
+		House.AssessHousingChange(litHousesBefore);	//produce any effects related to mass change in house power
 	}
 
 	//------------------------------------------------------------
@@ -185,7 +189,8 @@ public class Transmitter : MonoBehaviour {
 	House[] FindNearbyHouses(){
 		List<House> houses = new List<House>();
 		foreach(House h in GameObject.FindObjectsOfType<House>()){
-			//if(h.IsInRangeOfSource(transmissionRadius, 
+			if(h.IsInRangeOfSource(transmissionRadius, transform.position))
+				houses.Add(h);
 		}
 		return houses.ToArray();
 	}
