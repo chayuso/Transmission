@@ -152,8 +152,12 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	public void Break(){
 		OnDisabled();
-        print("Broken");
-	}
+        foreach (House h in GameObject.FindObjectsOfType<House>())
+        {
+            h.OnPowerOff();
+        }
+        OnPlaced();
+    }
     public bool IsBroken()
     {
         return broken;
