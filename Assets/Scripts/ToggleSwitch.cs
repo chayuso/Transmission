@@ -71,7 +71,7 @@ public class ToggleSwitch : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "ThirdPersonController" || col.name.Split(' ')[0].Trim() == "Transmitter" || col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
+        if (col.tag=="Player" || col.name.Split(' ')[0].Trim() == "Transmitter" || col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
         {
             isStepped = true;
             ObjectsOnTop.Add(col.gameObject);
@@ -79,7 +79,7 @@ public class ToggleSwitch : MonoBehaviour {
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.name == "ThirdPersonController"||col.name.Split(' ')[0].Trim()=="Transmitter"|| col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
+        if (col.tag == "Player" || col.name.Split(' ')[0].Trim()=="Transmitter"|| col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
         {
             ObjectsOnTop.Remove(col.gameObject);
         }
