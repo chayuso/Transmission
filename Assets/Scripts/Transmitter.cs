@@ -114,7 +114,9 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	void OnPlaced(){
 		UpdateChain();
-	}
+        FindNearbyHouses();
+
+    }
 
 	//------------------------------------------------------------
 	// on moved, update the power chain
@@ -189,8 +191,12 @@ public class Transmitter : MonoBehaviour {
 	House[] FindNearbyHouses(){
 		List<House> houses = new List<House>();
 		foreach(House h in GameObject.FindObjectsOfType<House>()){
-			if(h.IsInRangeOfSource(transmissionRadius, transform.position))
-				houses.Add(h);
+            if (h.IsInRangeOfSource(transmissionRadius, transform.position))
+            {
+                houses.Add(h);
+                h.OnPowerOn();
+            }
+				
 		}
 		return houses.ToArray();
 	}
