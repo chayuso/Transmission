@@ -51,7 +51,7 @@ public class ToggleSwitchMenu : MonoBehaviour {
 			{
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
-				if (ObjectsOnTop.Count == 1) {
+				if () {
 					SceneManager.LoadScene ("ConTest");
 				}
 			}
