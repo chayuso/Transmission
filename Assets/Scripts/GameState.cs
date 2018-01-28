@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameState : MonoBehaviour {
     public int litHousesCount = 0;
     public List<GameObject> LitHouses = new List<GameObject>();
     public List<GameObject> UnLitHouses = new List<GameObject>();
+    public int winCount = 11;
     // Use this for initialization
     void Start () {
 		
@@ -13,7 +15,12 @@ public class GameState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        litHousesCount = LitHouses.Count; 
+        litHousesCount = LitHouses.Count;
+        if (litHousesCount >= winCount)
+        {
+            StartCoroutine(NextSceneWin());
+            return;
+        }
 	}
     public IEnumerator ReevaluateHouse()
     {
@@ -25,5 +32,11 @@ public class GameState : MonoBehaviour {
                 LitHouses.Remove(go);
             }
         }
+    }
+    public IEnumerator NextSceneWin()
+    {
+        yield return new WaitForSeconds(2);
+        Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 }

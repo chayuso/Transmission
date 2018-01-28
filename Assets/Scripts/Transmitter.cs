@@ -232,15 +232,36 @@ public class Transmitter : MonoBehaviour {
 				TransistorBroken.SetActive(true);
 				TransistorOn.SetActive(false);
 				TransistorOff.SetActive(false);
+                foreach (Transform tr in gameObject.transform)
+                {
+                    if (tr.name.Split(' ')[0].Trim() == "Cylinder"|| tr.name.Split(' ')[0].Trim() == "Outline")
+                    {
+                        tr.gameObject.SetActive(false);
+                    }
+                }
 			} else if (powered){
 				TransistorBroken.SetActive(false);
 				TransistorOn.SetActive(true);
 				TransistorOff.SetActive(false);
-			} else{
+                foreach (Transform tr in gameObject.transform)
+                {
+                    if (tr.name.Split(' ')[0].Trim() == "Cylinder" || tr.name.Split(' ')[0].Trim() == "Outline")
+                    {
+                        tr.gameObject.SetActive(true);
+                    }
+                }
+            } else{
 				TransistorBroken.SetActive(false);
 				TransistorOn.SetActive(false);
 				TransistorOff.SetActive(true);
-			}
+                foreach (Transform tr in gameObject.transform)
+                {
+                    if (tr.name.Split(' ')[0].Trim() == "Cylinder" || tr.name.Split(' ')[0].Trim() == "Outline")
+                    {
+                        tr.gameObject.SetActive(false);
+                    }
+                }
+            }
 		} else {
         	rend.material = on ? debugOn : debugOff;
 			rend.material = broken ? debugBroken : rend.material;
