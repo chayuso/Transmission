@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class ToggleSwitchMenu : MonoBehaviour {
+public class ToggleSwitchExitGame : MonoBehaviour {
     public GameObject Button;
     public Material InactiveMaterial;
     public Material ActiveMaterial;
@@ -51,7 +51,7 @@ public class ToggleSwitchMenu : MonoBehaviour {
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
 				if (ObjectsOnTop.Count >= 2){
-					SceneManager.LoadScene ("ConTest");
+					Application.Quit();
 				}
 			}
 			else

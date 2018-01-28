@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuTest.unity
     guid: 30abe76fdf06d524fa8bc48a30037a04
+  - enabled: 1
+    path: Assets/Scenes/ConTest.unity
+    guid: e60787215be9f51459a36b67605b9c2a
