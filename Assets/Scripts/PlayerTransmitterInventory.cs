@@ -52,8 +52,8 @@ public class PlayerTransmitterInventory : MonoBehaviour {
 	void TransmitterInteract(){
 		if (nearest != null && distance <= pickupRadius)
 			PickupTransmitter(nearest);
-		else if (transmitterCount > 0)
-			PlaceTransmitter();
+		//else if (transmitterCount > 0)
+		//	PlaceTransmitter();
 	}
 
 	//------------------------------------------------------------
