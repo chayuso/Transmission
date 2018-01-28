@@ -667,11 +667,6 @@ Prefab:
       propertyPath: isStartTransmitter
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 135551875830186906, guid: 6ee9c4ddb4c0841ac90279611c0daa14,
-        type: 2}
-      propertyPath: m_Radius
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ee9c4ddb4c0841ac90279611c0daa14, type: 2}
   m_IsPrefabParent: 0

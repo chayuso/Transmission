@@ -20,8 +20,7 @@ public class AdaptiveAIController : MonoBehaviour {
 	bool reverse = false;
 	float currentSpeed = 0f;
 	float waitTimer = 0f;
-	Transmitter target = null;
-	//will need a player target too
+	HuntedTarget target = null;
 
 	enum Behavior{
 		Patrol, Wait, Attack
@@ -61,8 +60,8 @@ public class AdaptiveAIController : MonoBehaviour {
 	// determines if there is a transmitter to attack
 	//------------------------------------------------------------
 	bool AssessHostile(){
-		target = eyes.Sweep();
-		return target != null && !target.IsBroken();
+		target = eyes.Scan();
+		return (target != null && !target.IsValidTarget());
 	}
 
 	//------------------------------------------------------------
@@ -73,8 +72,12 @@ public class AdaptiveAIController : MonoBehaviour {
 			waitTimer = checkpointWaitTime;
 			nextCheckpointIndex += reverse ? -1 : 1;
 			if (nextCheckpointIndex >= checkpoints.Length){
-				nextCheckpointIndex -= 2;
-				reverse = !reverse;
+				if (circular)
+					nextCheckpointIndex = 0;
+				else{
+					nextCheckpointIndex -= 2;
+					reverse = !reverse;
+				}
 			} else if (nextCheckpointIndex < 0){
 				nextCheckpointIndex += 2;
 				reverse = !reverse;
@@ -153,6 +156,7 @@ public class AdaptiveAIController : MonoBehaviour {
 	// attacks the player or a transmitter if possible
 	//------------------------------------------------------------
 	void Attack(){
-
+		
 	}
+
 }
