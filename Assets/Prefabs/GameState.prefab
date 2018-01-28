@@ -9,48 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1505850560050614}
+  m_RootGameObject: {fileID: 1705075869046814}
   m_IsPrefabParent: 1
---- !u!1 &1505850560050614
+--- !u!1 &1705075869046814
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4661814501381894}
-  - component: {fileID: 114072851707752142}
+  - component: {fileID: 4872611187938726}
+  - component: {fileID: 114382937428948474}
   m_Layer: 0
-  m_Name: PlayerController
+  m_Name: GameState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4661814501381894
+--- !u!4 &4872611187938726
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505850560050614}
+  m_GameObject: {fileID: 1705075869046814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.416563, y: 0.18835974, z: 4.2105846}
+  m_LocalPosition: {x: 3.4524033, y: -0.8430896, z: -7.502612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114072851707752142
+--- !u!114 &114382937428948474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505850560050614}
+  m_GameObject: {fileID: 1705075869046814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9db3019934b8174a979952b10d0b236, type: 3}
+  m_Script: {fileID: 11500000, guid: 749d693455854ac43b6d41217c582088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransmitterPrefab: {fileID: 1118070152401424, guid: 0c0de0140a3d8fa4c8667f4d372e55e8,
-    type: 2}
-  PlayerCharacter: {fileID: 0}
+  litHousesCount: 0
+  LitHouses: []
+  UnLitHouses: []

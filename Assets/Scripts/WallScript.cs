@@ -6,7 +6,7 @@ public class WallScript : MonoBehaviour {
     public List<GameObject> DisabledEnemies;
 	// Use this for initialization
 	void Start () {
-        print("testc");
+       
 	}
 	
 	// Update is called once per frame
@@ -15,9 +15,10 @@ public class WallScript : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "AIThirdPersonController")
+
+        if (col.name == "Drone")
         {
-            col.gameObject.GetComponent<AIController>().disableMovement = true;
+            col.gameObject.GetComponent<AdaptiveAIController>().disableMovement = true;
             DisabledEnemies.Add(col.gameObject);
         }
     }
@@ -25,7 +26,7 @@ public class WallScript : MonoBehaviour {
     {
         for (int i = 0; i<DisabledEnemies.Count;i++)
         {
-            DisabledEnemies[i].GetComponent<AIController>().disableMovement = false;
+            DisabledEnemies[i].GetComponent<AdaptiveAIController>().disableMovement = false;
         }
         DisabledEnemies.Clear();
     }

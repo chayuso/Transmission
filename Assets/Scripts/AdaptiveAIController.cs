@@ -24,7 +24,7 @@ public partial class AdaptiveAIController : MonoBehaviour {
 	float waitTimer = 0f;
 	float killConfirmTimer = 0f;
 	HuntedTarget target = null;
-
+    public bool disableMovement = false;
 	enum Behavior{
 		Patrol, Wait, Attack
 	}
@@ -40,8 +40,12 @@ public partial class AdaptiveAIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		DetermineBehavior();
-		ExecuteBehavior();
+        if (!disableMovement)
+        {
+            DetermineBehavior();
+            ExecuteBehavior();
+        }
+
 	}
 
 	//------------------------------------------------------------

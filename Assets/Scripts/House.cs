@@ -6,9 +6,15 @@ using UnityEngine;
 public class House : MonoBehaviour {
     public GameObject HouseOn;
     public GameObject HouseOff;
-	//------------------------------------------------------------
-	// checks whether the house is within a power radius
-	//------------------------------------------------------------
+    public bool isOn = false;
+    private GameState GS;
+    //------------------------------------------------------------
+    // checks whether the house is within a power radius
+    //------------------------------------------------------------
+    void Start()
+    {
+       GS = GameObject.Find("GameState").GetComponent<GameState>();
+    }
 	public static House[] LitHouses(){
 		List<House> litHouses = new List<House>();
 		foreach (House h in GameObject.FindObjectsOfType<House>()){
@@ -66,7 +72,12 @@ public class House : MonoBehaviour {
 	public void OnPowerOff(){
         HouseOff.SetActive(true);
         HouseOn.SetActive(false);
-        print("HouseOff");
+        isOn = false;
+        if (!GS.UnLitHouses.Contains(gameObject))
+        {
+            GS.UnLitHouses.Add(gameObject);
+        }
+        StartCoroutine(GS.ReevaluateHouse());
         //play change to dark effect
     }
 
@@ -74,7 +85,16 @@ public class House : MonoBehaviour {
         //play change to light effect
         HouseOff.SetActive(false);
         HouseOn.SetActive(true);
-        print("HouseOn");
+        isOn = true;
+        if (!GS.LitHouses.Contains(gameObject))
+        {
+            GS.LitHouses.Add(gameObject);
+        }
+        if (GS.UnLitHouses.Contains(gameObject))
+        {
+            GS.UnLitHouses.Remove(gameObject);
+        }
+        StartCoroutine(GS.ReevaluateHouse());
     }
 
 }
