@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
+
+
+public class ToggleSwitch : MonoBehaviour {
+    public GameObject Button;
+    public Material InactiveMaterial;
+    public Material ActiveMaterial;
+    public GameObject Wall;
+    Vector3 initButtonPos;
+    bool isStepped = false;
+    public bool manualEnable = false;
+    public List<GameObject> ObjectsOnTop;
+    public bool Opens = true;
+    // Use this for initialization
+    void Start () {
+        initButtonPos = Button.transform.localPosition;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        foreach (GameObject go in ObjectsOnTop)
+        {
+            if (go == null)
+            {
+                ObjectsOnTop.Remove(go);
+            }
+        }
+        if (ObjectsOnTop.Count == 0)
+        {
+            isStepped = false;
+        }
+        if (manualEnable)
+        {
+			SceneManager.LoadScene (1);
+        }
+
+	}
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag=="Player" || col.name.Split(' ')[0].Trim() == "Transmitter" || col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
+        {
+            isStepped = true;
+            ObjectsOnTop.Add(col.gameObject);
+        }
+    }
+    void OnTriggerExit(Collider col)
+    {
+        if (col.tag == "Player" || col.name.Split(' ')[0].Trim()=="Transmitter"|| col.name.Split(' ')[0].Trim() == "AIThirdPersonController")
+        {
+            ObjectsOnTop.Remove(col.gameObject);
+        }
+
+    }
+}
