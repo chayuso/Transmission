@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemySight))]
-public class AdaptiveAIController : MonoBehaviour {
+public partial class AdaptiveAIController : MonoBehaviour {
 	[SerializeField] Transform footPoint;
 	[SerializeField] Transform[] checkpoints;
 	[SerializeField] int startCheckpoint = 0;
@@ -12,7 +12,9 @@ public class AdaptiveAIController : MonoBehaviour {
 	[SerializeField] float acceleration = 0.2f;
 	[SerializeField] float checkpointTolerance = 0.1f;
 	[SerializeField] float checkpointWaitTime = 0.5f;
+	[SerializeField] float waitAfterKillTime = 0.5f;
 	[SerializeField] float turnRate = 120f;
+	[SerializeField] float fireArc = 10f;
 
 	EnemySight eyes;
 	Behavior currentBehavior;
@@ -20,6 +22,7 @@ public class AdaptiveAIController : MonoBehaviour {
 	bool reverse = false;
 	float currentSpeed = 0f;
 	float waitTimer = 0f;
+	float killConfirmTimer = 0f;
 	HuntedTarget target = null;
 
 	enum Behavior{
@@ -60,8 +63,10 @@ public class AdaptiveAIController : MonoBehaviour {
 	// determines if there is a transmitter to attack
 	//------------------------------------------------------------
 	bool AssessHostile(){
+		if (killConfirmTimer > 0f)
+			return true;
 		target = eyes.Scan();
-		return (target != null && !target.IsValidTarget());
+		return (target != null && target.IsValidTarget());
 	}
 
 	//------------------------------------------------------------
@@ -153,10 +158,26 @@ public class AdaptiveAIController : MonoBehaviour {
 	}
 
 	//------------------------------------------------------------
-	// attacks the player or a transmitter if possible
+	// aims at and attacks the target if possible
 	//------------------------------------------------------------
 	void Attack(){
-		
+		if (killConfirmTimer > 0){
+			killConfirmTimer -= Time.deltaTime;
+			return;
+		}
+		LookTowardsTarget(target.transform.position);
+		if (Vector3.Angle(transform.forward, target.transform.position - transform.position) <= fireArc){
+			Fire();
+		}
+	}
+
+	//------------------------------------------------------------
+	// attacks the target
+	//------------------------------------------------------------
+	void Fire(){
+		//do some fire animation
+		target.Hit();
+		killConfirmTimer = waitAfterKillTime;
 	}
 
 }
