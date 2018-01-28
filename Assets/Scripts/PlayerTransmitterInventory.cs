@@ -13,8 +13,14 @@ public class PlayerTransmitterInventory : MonoBehaviour {
 
 	float distance;
 	Transmitter nearest = null;
-	
-	// Update is called once per frame
+    private GameState GS;
+    private AudioController AC;
+    // Update is called once per frame
+    void Start()
+    {
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
+        AC = GameObject.Find("AudioController").GetComponent<AudioController>();
+    }
 	void Update () {
 		TransmitterHighlight();
 		UserControl();
@@ -89,6 +95,8 @@ public class PlayerTransmitterInventory : MonoBehaviour {
 	void PickupTransmitter(Transmitter t){
 		Destroy(t.gameObject);
 		++transmitterCount;
+        GS.transmittersDeployed--;
+        AC.RetrieveTransmission.Play();
 	}
 
 	//------------------------------------------------------------

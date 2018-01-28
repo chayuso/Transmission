@@ -8,6 +8,8 @@ public class GameState : MonoBehaviour {
     public List<GameObject> LitHouses = new List<GameObject>();
     public List<GameObject> UnLitHouses = new List<GameObject>();
     public int winCount = 11;
+    public int transmitterLimit = 10;
+    public int transmittersDeployed = 0;
     private AudioController AC;
     // Use this for initialization
     void Start () {
