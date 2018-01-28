@@ -16,31 +16,23 @@ public class EnemySight : MonoBehaviour {
 		
 	}
 
-	public Transmitter Sweep(){
-		foreach(Transmitter t in GameObject.FindObjectsOfType<Transmitter>()){
-			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)
-				continue;
-			RaycastHit hit;
-			if (Physics.Raycast(t.transform.position, transform.position - t.transform.position, out hit, sightRange)){
-				if (hit.collider.gameObject == gameObject){
-					return t;
-				}
-			}
-		}
-		return null;
-	}
-
 	public HuntedTarget Scan(){
+		int highestPriority = -1;
+		HuntedTarget bestTarget = null;
+
 		foreach(HuntedTarget t in GameObject.FindObjectsOfType<HuntedTarget>()){
 			if (Vector3.Distance(t.transform.position, transform.position) > sightRange)
 				continue;
 			RaycastHit hit;
 			if (Physics.Raycast(t.transform.position, transform.position - t.transform.position, out hit, sightRange)){
 				if (hit.collider.gameObject == gameObject){
-					return t;
+					if (t.GetPriority() > highestPriority){
+						highestPriority = t.GetPriority();
+						bestTarget = t;
+					}
 				}
 			}
 		}
-		return null;
+		return bestTarget;
 	}
 }

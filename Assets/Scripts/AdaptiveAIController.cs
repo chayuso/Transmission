@@ -20,9 +20,7 @@ public class AdaptiveAIController : MonoBehaviour {
 	bool reverse = false;
 	float currentSpeed = 0f;
 	float waitTimer = 0f;
-	Transmitter target = null;
-	HuntedTarget priorityTarget = null;
-	//will need a player target too
+	HuntedTarget target = null;
 
 	enum Behavior{
 		Patrol, Wait, Attack
@@ -62,9 +60,8 @@ public class AdaptiveAIController : MonoBehaviour {
 	// determines if there is a transmitter to attack
 	//------------------------------------------------------------
 	bool AssessHostile(){
-		priorityTarget = eyes.Scan();
-		target = eyes.Sweep();
-		return (target != null && !target.IsBroken()) || (priorityTarget != null);
+		target = eyes.Scan();
+		return (target != null && !target.IsValidTarget());
 	}
 
 	//------------------------------------------------------------
@@ -162,18 +159,4 @@ public class AdaptiveAIController : MonoBehaviour {
 		
 	}
 
-	//------------------------------------------------------------
-	// converts the highest-priority target into just a target point
-	//------------------------------------------------------------
-	bool TargetPoint(out Vector3 targetPoint){
-		if (priorityTarget != null){
-			targetPoint = priorityTarget.transform.position;
-			return true;
-		} else if (target != null){
-			targetPoint = target.transform.position;
-			return true;
-		}
-		targetPoint = Vector3.zero;
-		return false;
-	}
 }

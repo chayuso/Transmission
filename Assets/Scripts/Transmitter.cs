@@ -223,4 +223,10 @@ public class Transmitter : MonoBehaviour {
 		return isStartTransmitter;
 	}
 
+	//------------------------------------------------------------
+	// responds to the hunted script as to whether this has already been broken
+	//------------------------------------------------------------
+	public void IsHuntable(HuntedTarget ht){
+		ht.SetValidTarget(!broken);
+	}
 }
