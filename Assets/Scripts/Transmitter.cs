@@ -36,6 +36,7 @@ public class Transmitter : MonoBehaviour {
 		foreach (Transmitter t in transmitters){t.updated = true;}
 
 		House.AssessHousingChange(litHousesBefore);	//produce any effects related to mass change in house power
+
 	}
 
 	//------------------------------------------------------------
@@ -56,7 +57,11 @@ public class Transmitter : MonoBehaviour {
 			next.SetPower(true);
 			AssessPower(next);
 		}
-	}
+        if (t.powered)
+        {
+            t.FindNearbyHouses();
+        }
+    }
 
 
 
@@ -108,16 +113,12 @@ public class Transmitter : MonoBehaviour {
 	void Start () {
 		OnPlaced();
 	}
-
 	//------------------------------------------------------------
 	// on place, update the power chain
 	//------------------------------------------------------------
 	void OnPlaced(){
 		UpdateChain();
-        if (powered)
-        {
-            FindNearbyHouses();
-        }
+
 
     }
 
@@ -134,10 +135,11 @@ public class Transmitter : MonoBehaviour {
 	void OnDestroy(){
 		RemoveTransmitter(this);
 		OnDisabled();
-        foreach (House h in houses)
+        foreach (House h in GameObject.FindObjectsOfType<House>())
         {
             h.OnPowerOff();
         }
+        OnPlaced();
     }
 
 	//------------------------------------------------------------
