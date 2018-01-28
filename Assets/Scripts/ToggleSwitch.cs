@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToggleSwitch : MonoBehaviour {
-    public GameObject Button;
+    private GameObject Button;
     public Material InactiveMaterial;
     public Material ActiveMaterial;
     public GameObject Wall;
@@ -16,7 +16,7 @@ public class ToggleSwitch : MonoBehaviour {
     void Start () {
         initButtonPos = Button.transform.localPosition;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         foreach (GameObject go in ObjectsOnTop)
