@@ -27,27 +27,27 @@ public class GameState : MonoBehaviour {
         }
         if (litHousesCount >= winCount / 5&&!finishedLevel)
         {
-            AC.BGM1.volume = 100;
+            AC.BGM1.volume = 1;
         }
         else { AC.BGM1.volume = 0; }
         if (litHousesCount >= (winCount / 5)*2 && !finishedLevel)
         {
-            AC.BGM2.volume = 40;
+            AC.BGM2.volume = .7f;
         }
         else { AC.BGM2.volume = 0; }
         if (litHousesCount >= (winCount / 5) * 3 && !finishedLevel)
         {
-            AC.BGM3.volume = 35;
+            AC.BGM3.volume = .7f;
         }
         else { AC.BGM3.volume = 0; }
         if (litHousesCount >= (winCount / 5) * 4 && !finishedLevel)
         {
-            AC.BGM4.volume = 30;
+            AC.BGM4.volume = .7f;
         }
         else { AC.BGM4.volume = 0; }
-        if (litHousesCount >= (winCount / 5) * 5 && !finishedLevel)
+        if (litHousesCount >= ((winCount / 5) * 5)-1 && !finishedLevel)
         {
-            AC.BGM5.volume = 30;
+            AC.BGM5.volume = 1f;
         }
         else { AC.BGM5.volume = 0; }
     }

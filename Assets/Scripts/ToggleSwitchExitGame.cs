@@ -40,8 +40,9 @@ public class ToggleSwitchExitGame : MonoBehaviour {
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
 				SceneManager.LoadScene("ConTest");
+                Application.Quit();
 
-			} 
+            } 
 		}
 		else
 		{
@@ -50,7 +51,8 @@ public class ToggleSwitchExitGame : MonoBehaviour {
 			{
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
-				if (ObjectsOnTop.Count >= 2){
+                Application.Quit();
+                if (ObjectsOnTop.Count >= 2){
 					Application.Quit();
 				}
 			}
