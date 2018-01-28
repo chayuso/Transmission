@@ -166,7 +166,8 @@ public partial class AdaptiveAIController : MonoBehaviour {
 			return;
 		}
 		LookTowardsTarget(target.transform.position);
-		if (Vector3.Angle(transform.forward, target.transform.position - transform.position) <= fireArc){
+		Vector3 flatOffsetVector = Vector3.ProjectOnPlane(target.transform.position - transform.position, Vector3.up);
+		if (Vector3.Angle(transform.forward, flatOffsetVector) <= fireArc){
 			Fire();
 		}
 	}
