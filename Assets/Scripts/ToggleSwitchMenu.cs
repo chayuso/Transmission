@@ -18,7 +18,7 @@ public class ToggleSwitchMenu : MonoBehaviour {
     void Start () {
         initButtonPos = Button.transform.localPosition;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         foreach (GameObject go in ObjectsOnTop)
@@ -39,7 +39,7 @@ public class ToggleSwitchMenu : MonoBehaviour {
 			{
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
-				SceneManager.LoadScene("ConTest");
+				SceneManager.LoadScene("BaseScene");
 
 			} 
 		}

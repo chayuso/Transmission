@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ConTest.unity
     guid: e60787215be9f51459a36b67605b9c2a
+  - enabled: 1
+    path: Assets/Scenes/Chris/BaseScene.unity
+    guid: 6ed22581253a2a5419b40be829419ef3
