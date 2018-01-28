@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class ToggleSwitch : MonoBehaviour {
+public class ToggleSwitchMenu : MonoBehaviour {
     public GameObject Button;
     public Material InactiveMaterial;
     public Material ActiveMaterial;
@@ -15,7 +15,6 @@ public class ToggleSwitch : MonoBehaviour {
     bool isStepped = false;
     public bool manualEnable = false;
     public List<GameObject> ObjectsOnTop;
-    public bool Opens = true;
     // Use this for initialization
     void Start () {
         initButtonPos = Button.transform.localPosition;
@@ -34,10 +33,35 @@ public class ToggleSwitch : MonoBehaviour {
         {
             isStepped = false;
         }
-        if (manualEnable)
-        {
-			SceneManager.LoadScene (1);
-        }
+		if (manualEnable)
+		{
+
+			if (manualEnable)
+			{
+				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
+				Button.GetComponent<Renderer>().material = ActiveMaterial;
+				SceneManager.LoadScene("ConTest");
+
+			} 
+		}
+		else
+		{
+
+			if (isStepped)
+			{
+				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
+				Button.GetComponent<Renderer>().material = ActiveMaterial;
+				if (ObjectsOnTop.Count == 1) {
+					SceneManager.LoadScene ("ConTest");
+				}
+			}
+			else
+			{
+				Button.transform.localPosition = initButtonPos;
+				Button.GetComponent<Renderer>().material = InactiveMaterial;
+			}
+
+		}
 
 	}
     void OnTriggerEnter(Collider col)
