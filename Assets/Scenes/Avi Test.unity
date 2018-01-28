@@ -1043,6 +1043,10 @@ MonoBehaviour:
   waitAfterKillTime: 0.7
   turnRate: 120
   fireArc: 10
+  pathSpherecastSize: 0.8
+  detectedObstructions:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!23 &2091294584
 MeshRenderer:
   m_ObjectHideFlags: 0
