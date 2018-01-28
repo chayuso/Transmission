@@ -18,7 +18,7 @@ public class Transmitter : MonoBehaviour {
 
 	static void AddTransmitter(Transmitter t){transmitters.Add(t);}
 	static void RemoveTransmitter(Transmitter t){transmitters.Remove(t);}
-
+    private AudioController AC;
     //------------------------------------------------------------
     // begins the update cycle of the transmitters
     //------------------------------------------------------------
@@ -116,7 +116,8 @@ public class Transmitter : MonoBehaviour {
 	// on start
 	//------------------------------------------------------------
 	void Start () {
-		OnPlaced();
+        AC = GameObject.Find("AudioController").GetComponent<AudioController>();
+        OnPlaced();
 	}
 	//------------------------------------------------------------
 	// on place, update the power chain
