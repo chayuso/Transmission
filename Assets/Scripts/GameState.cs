@@ -25,12 +25,32 @@ public class GameState : MonoBehaviour {
             StartCoroutine(NextSceneWin());
             return;
         }
-        if (litHousesCount >= winCount / 2&&!finishedLevel)
+        if (litHousesCount >= winCount / 5&&!finishedLevel)
         {
-            AC.HousePowersingle.volume = 100;
+            AC.BGM1.volume = 100;
         }
-        else { AC.HousePowersingle.volume = 0; }
-	}
+        else { AC.BGM1.volume = 0; }
+        if (litHousesCount >= (winCount / 5)*2 && !finishedLevel)
+        {
+            AC.BGM2.volume = 100;
+        }
+        else { AC.BGM2.volume = 0; }
+        if (litHousesCount >= (winCount / 5) * 3 && !finishedLevel)
+        {
+            AC.BGM3.volume = 100;
+        }
+        else { AC.BGM3.volume = 0; }
+        if (litHousesCount >= (winCount / 5) * 4 && !finishedLevel)
+        {
+            AC.BGM4.volume = 100;
+        }
+        else { AC.BGM4.volume = 0; }
+        if (litHousesCount >= (winCount / 5) * 5 && !finishedLevel)
+        {
+            AC.BGM5.volume = 100;
+        }
+        else { AC.BGM5.volume = 0; }
+    }
     public IEnumerator ReevaluateHouse()
     {
         yield return new WaitForSeconds(.1f);
@@ -53,8 +73,6 @@ public class GameState : MonoBehaviour {
         if (!finishedLevel)
         {
             finishedLevel = true;
-            AC.HousePowerMultiple.Play();
-            AC.HousePowersingle.Stop();
             yield return new WaitForSeconds(1.5f);
             Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
 

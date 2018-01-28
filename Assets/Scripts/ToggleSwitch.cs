@@ -60,7 +60,7 @@ public class ToggleSwitch : MonoBehaviour {
             }
             else
             {
-                AC.Switch.volume = 50;
+                AC.Switch.volume = 25;
                 AC.Switch.Play();
                 Button.transform.localPosition = initButtonPos;
                 Button.GetComponent<Renderer>().material = InactiveMaterial;
