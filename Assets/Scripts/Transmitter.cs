@@ -149,6 +149,13 @@ public class Transmitter : MonoBehaviour {
 	}
 
 	//------------------------------------------------------------
+	// returns whether the transmitter is broken or not
+	//------------------------------------------------------------
+	public bool IsBroken(){
+		return broken;
+	}
+
+	//------------------------------------------------------------
 	// sets the power state of this transmitter
 	//------------------------------------------------------------
 	void SetPower(bool on){
