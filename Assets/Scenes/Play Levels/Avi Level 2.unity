@@ -575,6 +575,14 @@ Prefab:
       propertyPath: m_Name
       value: CameraTarget (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4292972166258134, guid: 1836e524da4e3324cbd45a2eba74ef0b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 9.303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292972166258134, guid: 1836e524da4e3324cbd45a2eba74ef0b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6.244
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1836e524da4e3324cbd45a2eba74ef0b, type: 2}
   m_IsPrefabParent: 0
@@ -1582,6 +1590,16 @@ Prefab:
     - target: {fileID: 1705075869046814, guid: eb57e21c8a0420745bdb448aad1249d2, type: 2}
       propertyPath: m_Name
       value: GameState
+      objectReference: {fileID: 0}
+    - target: {fileID: 114382937428948474, guid: eb57e21c8a0420745bdb448aad1249d2,
+        type: 2}
+      propertyPath: transmitterLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114382937428948474, guid: eb57e21c8a0420745bdb448aad1249d2,
+        type: 2}
+      propertyPath: winCount
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb57e21c8a0420745bdb448aad1249d2, type: 2}
