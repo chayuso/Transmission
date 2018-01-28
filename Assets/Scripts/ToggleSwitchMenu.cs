@@ -39,9 +39,9 @@ public class ToggleSwitchMenu : MonoBehaviour {
 			{
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
-				SceneManager.LoadScene("BaseScene");
+                Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
 
-			} 
+            } 
 		}
 		else
 		{
@@ -51,8 +51,8 @@ public class ToggleSwitchMenu : MonoBehaviour {
 				Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
 				Button.GetComponent<Renderer>().material = ActiveMaterial;
 				if (ObjectsOnTop.Count >= 2){
-					SceneManager.LoadScene ("BaseScene");
-				}
+                    Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+                }
 			}
 			else
 			{
