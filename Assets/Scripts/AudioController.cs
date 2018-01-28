@@ -13,7 +13,8 @@ public class AudioController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Ambient.Play();
-
+        HousePowersingle.Play();
+        HousePowersingle.volume=0;
     }
 	
 	// Update is called once per frame

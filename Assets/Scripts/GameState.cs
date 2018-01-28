@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour {
     public int transmitterLimit = 10;
     public int transmittersDeployed = 0;
     private AudioController AC;
+    public bool finishedLevel = false;
     // Use this for initialization
     void Start () {
         AC = GameObject.Find("AudioController").GetComponent<AudioController>();
@@ -24,6 +25,11 @@ public class GameState : MonoBehaviour {
             StartCoroutine(NextSceneWin());
             return;
         }
+        if (litHousesCount >= winCount / 2&&!finishedLevel)
+        {
+            AC.HousePowersingle.volume = 100;
+        }
+        else { AC.HousePowersingle.volume = 0; }
 	}
     public IEnumerator ReevaluateHouse()
     {
@@ -44,8 +50,14 @@ public class GameState : MonoBehaviour {
     }
     public IEnumerator NextSceneWin()
     {
-        yield return new WaitForSeconds(2);
-        Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        if (!finishedLevel)
+        {
+            finishedLevel = true;
+            AC.HousePowerMultiple.Play();
+            AC.HousePowersingle.Stop();
+            yield return new WaitForSeconds(1.5f);
+            Application.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
 
+        }
     }
 }

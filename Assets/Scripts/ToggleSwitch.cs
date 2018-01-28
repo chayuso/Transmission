@@ -12,10 +12,12 @@ public class ToggleSwitch : MonoBehaviour {
     public bool manualEnable = false;
     public List<GameObject> ObjectsOnTop;
     public bool Opens = true;
+    private AudioController AC;
     // Use this for initialization
     void Start () {
         initButtonPos = Button.transform.localPosition;
-	}
+        AC = GameObject.Find("AudioController").GetComponent<AudioController>();
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -46,6 +48,7 @@ public class ToggleSwitch : MonoBehaviour {
     
             if (isStepped)
             {
+                
                 Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
                 Button.GetComponent<Renderer>().material = ActiveMaterial;
                 if (Opens)
@@ -53,9 +56,12 @@ public class ToggleSwitch : MonoBehaviour {
                     Wall.SetActive(false);
                 }
                 else { Wall.SetActive(true); }
+                
             }
             else
             {
+                AC.Switch.volume = 50;
+                AC.Switch.Play();
                 Button.transform.localPosition = initButtonPos;
                 Button.GetComponent<Renderer>().material = InactiveMaterial;
                 Wall.GetComponent<WallScript>().ReEnableEnemies();
@@ -64,6 +70,7 @@ public class ToggleSwitch : MonoBehaviour {
                     Wall.SetActive(true);
                 }
                 else { Wall.SetActive(false); }
+                
             }
 
         }
