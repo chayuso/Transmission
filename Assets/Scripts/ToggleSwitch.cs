@@ -11,6 +11,7 @@ public class ToggleSwitch : MonoBehaviour {
     bool isStepped = false;
     public bool manualEnable = false;
     public List<GameObject> ObjectsOnTop;
+    public bool Opens = true;
     // Use this for initialization
     void Start () {
         initButtonPos = Button.transform.localPosition;
@@ -18,6 +19,17 @@ public class ToggleSwitch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        foreach (GameObject go in ObjectsOnTop)
+        {
+            if (go == null)
+            {
+                ObjectsOnTop.Remove(go);
+            }
+        }
+        if (ObjectsOnTop.Count == 0)
+        {
+            isStepped = false;
+        }
         if (manualEnable)
         {
          
@@ -36,15 +48,24 @@ public class ToggleSwitch : MonoBehaviour {
             {
                 Button.transform.localPosition = new Vector3(initButtonPos.x, .05f, initButtonPos.z);
                 Button.GetComponent<Renderer>().material = ActiveMaterial;
-
+                if (Opens)
+                {
+                    Wall.SetActive(false);
+                }
+                else { Wall.SetActive(true); }
             }
             else
             {
                 Button.transform.localPosition = initButtonPos;
                 Button.GetComponent<Renderer>().material = InactiveMaterial;
                 Wall.GetComponent<WallScript>().ReEnableEnemies();
+                if (Opens)
+                {
+                    Wall.SetActive(true);
+                }
+                else { Wall.SetActive(false); }
             }
-            Wall.SetActive(isStepped);
+
         }
 
 	}
@@ -62,9 +83,6 @@ public class ToggleSwitch : MonoBehaviour {
         {
             ObjectsOnTop.Remove(col.gameObject);
         }
-        if (ObjectsOnTop.Count==0)
-        {
-            isStepped = false;
-        }
+
     }
 }
