@@ -32,22 +32,22 @@ public class GameState : MonoBehaviour {
         else { AC.BGM1.volume = 0; }
         if (litHousesCount >= (winCount / 5)*2 && !finishedLevel)
         {
-            AC.BGM2.volume = 100;
+            AC.BGM2.volume = 50;
         }
         else { AC.BGM2.volume = 0; }
         if (litHousesCount >= (winCount / 5) * 3 && !finishedLevel)
         {
-            AC.BGM3.volume = 100;
+            AC.BGM3.volume = 40;
         }
         else { AC.BGM3.volume = 0; }
         if (litHousesCount >= (winCount / 5) * 4 && !finishedLevel)
         {
-            AC.BGM4.volume = 100;
+            AC.BGM4.volume = 30;
         }
         else { AC.BGM4.volume = 0; }
         if (litHousesCount >= (winCount / 5) * 5 && !finishedLevel)
         {
-            AC.BGM5.volume = 100;
+            AC.BGM5.volume = 20;
         }
         else { AC.BGM5.volume = 0; }
     }

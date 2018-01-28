@@ -54,3 +54,7 @@ MonoBehaviour:
   litHousesCount: 0
   LitHouses: []
   UnLitHouses: []
+  winCount: 11
+  transmitterLimit: 10
+  transmittersDeployed: 0
+  finishedLevel: 0
