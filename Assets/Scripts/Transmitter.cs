@@ -19,6 +19,9 @@ public class Transmitter : MonoBehaviour {
 	static void AddTransmitter(Transmitter t){transmitters.Add(t);}
 	static void RemoveTransmitter(Transmitter t){transmitters.Remove(t);}
     public List<House> houses = new List<House>();
+    public GameObject TransistorOn;
+    public GameObject TransistorOff;
+    public GameObject TransistorBroken;
     //------------------------------------------------------------
     // begins the update cycle of the transmitters
     //------------------------------------------------------------
@@ -147,6 +150,7 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	public void Break(){
 		OnDisabled();
+        print("Broken");
 	}
     public bool IsBroken()
     {
@@ -217,8 +221,25 @@ public class Transmitter : MonoBehaviour {
 	// visual debug
 	//------------------------------------------------------------
 	void SetDebugAppearance(bool on){
-		rend.material = on ? debugOn : debugOff;
-		rend.material = broken ? debugBroken : rend.material;
+        if (broken)
+        {
+            TransistorBroken.SetActive(true);
+            TransistorOn.SetActive(false);
+            TransistorOff.SetActive(false);
+        }
+        else if (powered)
+        {
+            TransistorBroken.SetActive(false);
+            TransistorOn.SetActive(true);
+            TransistorOff.SetActive(false);
+        }
+        else {
+            TransistorBroken.SetActive(false);
+            TransistorOn.SetActive(false);
+            TransistorOff.SetActive(true);
+        }
+        //rend.material = on ? debugOn : debugOff;
+		//rend.material = broken ? debugBroken : rend.material;
 	}
 
 	//------------------------------------------------------------
