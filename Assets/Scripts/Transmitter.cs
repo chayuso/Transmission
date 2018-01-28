@@ -18,11 +18,11 @@ public class Transmitter : MonoBehaviour {
 
 	static void AddTransmitter(Transmitter t){transmitters.Add(t);}
 	static void RemoveTransmitter(Transmitter t){transmitters.Remove(t);}
-
-	//------------------------------------------------------------
-	// begins the update cycle of the transmitters
-	//------------------------------------------------------------
-	static void Reassess(){
+    public List<House> houses = new List<House>();
+    //------------------------------------------------------------
+    // begins the update cycle of the transmitters
+    //------------------------------------------------------------
+    static void Reassess(){
 		House[] litHousesBefore = House.LitHouses();	//log the houses that are lit beforehand
 
 		foreach (Transmitter t in transmitters){
@@ -114,7 +114,10 @@ public class Transmitter : MonoBehaviour {
 	//------------------------------------------------------------
 	void OnPlaced(){
 		UpdateChain();
-        FindNearbyHouses();
+        if (powered)
+        {
+            FindNearbyHouses();
+        }
 
     }
 
@@ -131,7 +134,11 @@ public class Transmitter : MonoBehaviour {
 	void OnDestroy(){
 		RemoveTransmitter(this);
 		OnDisabled();
-	}
+        foreach (House h in houses)
+        {
+            h.OnPowerOff();
+        }
+    }
 
 	//------------------------------------------------------------
 	// breaks the transmitter
@@ -139,20 +146,16 @@ public class Transmitter : MonoBehaviour {
 	public void Break(){
 		OnDisabled();
 	}
-
+    public bool IsBroken()
+    {
+        return false;
+    }
 	//------------------------------------------------------------
 	// on remove, also update the power chain
 	//------------------------------------------------------------
 	void OnDisabled(){
 		broken = true;
 		UpdateChain();
-	}
-
-	//------------------------------------------------------------
-	// returns whether the transmitter is broken or not
-	//------------------------------------------------------------
-	public bool IsBroken(){
-		return broken;
 	}
 
 	//------------------------------------------------------------
@@ -184,7 +187,7 @@ public class Transmitter : MonoBehaviour {
 		List<Transmitter> neighbors = new List<Transmitter>();
 
 		foreach (Transmitter c in transmitters){
-			if (Vector3.Distance(c.transform.position, transform.position) <= transmissionRadius)
+            if (Vector3.Distance(c.transform.position, transform.position) <= transmissionRadius)
 				neighbors.Add(c);
 		}
 	
@@ -196,14 +199,14 @@ public class Transmitter : MonoBehaviour {
 	// returns a list of all nearby houses
 	//------------------------------------------------------------
 	House[] FindNearbyHouses(){
-		List<House> houses = new List<House>();
+		houses = new List<House>();
 		foreach(House h in GameObject.FindObjectsOfType<House>()){
             if (h.IsInRangeOfSource(transmissionRadius, transform.position))
             {
                 houses.Add(h);
                 h.OnPowerOn();
             }
-				
+
 		}
 		return houses.ToArray();
 	}

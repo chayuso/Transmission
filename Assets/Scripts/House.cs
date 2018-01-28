@@ -4,8 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class House : MonoBehaviour {
-    public Mesh HouseOn;
-    public Mesh HouseOff;
+    public GameObject HouseOn;
+    public GameObject HouseOff;
 	//------------------------------------------------------------
 	// checks whether the house is within a power radius
 	//------------------------------------------------------------
@@ -64,14 +64,16 @@ public class House : MonoBehaviour {
 	}
 
 	public void OnPowerOff(){
-        GetComponent<MeshFilter>().mesh = HouseOff;
+        HouseOff.SetActive(true);
+        HouseOn.SetActive(false);
         print("HouseOff");
         //play change to dark effect
     }
 
 	public void OnPowerOn(){
         //play change to light effect
-        GetComponent<MeshFilter>().mesh = HouseOn;
+        HouseOff.SetActive(false);
+        HouseOn.SetActive(true);
         print("HouseOn");
     }
 
