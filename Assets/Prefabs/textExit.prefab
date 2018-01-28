@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65781910248492014}
   - component: {fileID: 23360513893884598}
   m_Layer: 0
-  m_Name: TextExit
+  m_Name: textExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
